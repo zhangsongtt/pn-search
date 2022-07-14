@@ -60,8 +60,8 @@ void pn_search::search() {
 		restart_state();
 		return;
 	}
-
-	while (root_.proof() != 0 && root_.disproof() != 0 && root_.subtree_size() < parameters::PN_SEARCH_SIZE_LIMIT_) {
+	
+	while (root_.proof() != 0 && root_.disproof() != 0 && ( move_number_ > 3 || root_.subtree_size() < parameters::PN_SEARCH_SIZE_LIMIT_)) {
 		restart_state();
 
 		pn_node& mostProvingNode = select_most_proving();

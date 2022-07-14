@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <array>
+#include <stdexcept>
 
 
 /* STATIC VECTOR

@@ -2,6 +2,9 @@
 #define PARAMETERS_H
 
 #include <cstdint>
+#include <algorithm>
+#include <iterator>
+#include <stdexcept>
 
 
 class parameters {
