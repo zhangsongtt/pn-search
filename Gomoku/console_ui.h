@@ -4,7 +4,7 @@
 #include "bit_board.h"
 #include "abstract_ui.h"
 
-#include <windows.h>
+//#include <windows.h>
 
 
 /* CONSOLE USER INTERFACE
@@ -31,7 +31,7 @@ private:
 	// deletes $number_of_chars characters in front of the cursor
 	void clear_console(size_t number_of_chars);
 
-	const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	//const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	size_t last_answer_length = 0;
 };
 

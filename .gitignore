@@ -32,4 +32,6 @@
 *.app
 /x64
 /.vs
+/Debug
 /Gomoku/x64
+/Gomoku/Debug

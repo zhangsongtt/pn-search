@@ -15,15 +15,15 @@ using namespace std;
 // with a warning message
 
 coords console_ui::read_next_move(const simple_board& board, const string& message) {
-	SetConsoleCursorPosition(hConsole, { 0, 35 });
-	SetConsoleTextAttribute(hConsole, 7); // light gray
+	//SetConsoleCursorPosition(hConsole, { 0, 35 });
+	//SetConsoleTextAttribute(hConsole, 7); // light gray
 
-	clear_console(last_answer_length);
+	//clear_console(last_answer_length);
 	cout << endl << "     " << message << endl << endl;
 	cout << endl << "     next move: "; 
-	clear_console(last_answer_length);
+	//clear_console(last_answer_length);
 
-	SetConsoleTextAttribute(hConsole, 15); // default white colour
+	//SetConsoleTextAttribute(hConsole, 15); // default white colour
 	string answer;
 	cin >> answer;
 
@@ -64,28 +64,28 @@ void console_ui::clear_console(size_t number_of_chars) {
 void console_ui::render(const simple_board& board, coords last_move, bool show_winning_line) {
 	system("cls");
 
-	SetConsoleTextAttribute(hConsole, 7); // light gray
-	cout << endl << "     a b c d e f g h i j k l m n o" << endl;
-	SetConsoleTextAttribute(hConsole, 8); // dark grey
+	//SetConsoleTextAttribute(hConsole, 7); // light gray
+	cout << endl << "    a b c d e f g h i j k l m n o" << endl;
+	//SetConsoleTextAttribute(hConsole, 8); // dark grey
 
 	// first row: ┌─┬─┬─ ...
 
-	cout << "    " << char(218) << char(196);
-	for (int x = 0; x < 14; ++x)
-		cout << char(194) << char(196);
-	cout << char(191) << endl;
+	//cout << "    " << char(218) << char(196);
+	//for (int x = 0; x < 14; ++x)
+	//	cout << char(194) << char(196);
+	//cout << char(191) << endl;
 	
 	for (int y = 0; y < constants::BOARD_SIZE; y++) {
 
 		// even row: 12 │ │X│O│ │O ...
 
-		SetConsoleTextAttribute(hConsole, 7); // light gray
+		//SetConsoleTextAttribute(hConsole, 7); // light gray
 		if (y <= 8) cout << "  " << y + 1 << " ";
 		else cout << " " << y + 1 << " ";
-		SetConsoleTextAttribute(hConsole, 8); // dark grey
+		//SetConsoleTextAttribute(hConsole, 8); // dark grey
 
 		for (int x = 0; x < constants::BOARD_SIZE; ++x) {
-			cout << char(179);
+			//cout << char(179);
 
 			bool highlight = false;
 			// highlight the piece, if it was placed as a last move or if it is part of the winning line
@@ -93,28 +93,30 @@ void console_ui::render(const simple_board& board, coords last_move, bool show_w
 				highlight = true;
 
 			switch (board.get_move(x, y)) {
-				case NONE: cout << " "; break;
-				case BLACK: SetConsoleTextAttribute(hConsole, highlight ? 0xC0 : 0x0C); cout << "X"; SetConsoleTextAttribute(hConsole, 8); break;
-				case WHITE: SetConsoleTextAttribute(hConsole, highlight ? 0xB0 : 0x0B); cout << "O"; SetConsoleTextAttribute(hConsole, 8); break;
+				case NONE: cout << "."; break;
+				case BLACK: /*SetConsoleTextAttribute(hConsole, highlight ? 0xC0 : 0x0C);*/ cout << "X"; /*SetConsoleTextAttribute(hConsole, 8);*/ break;
+				case WHITE: /*SetConsoleTextAttribute(hConsole, highlight ? 0xB0 : 0x0B);*/ cout << "O"; /*SetConsoleTextAttribute(hConsole, 8);*/ break;
 			}
+			cout << " ";
 		}
-		cout << char(179) << endl;
+		//cout << char(179) << endl;
+		cout << endl;
 		if (y == 14) break;
 
 		// odd row:  ├─┼─┼─┼ ...
 
-		cout << "    " << char(195) << char(196);
-		for (int x = 0; x < 14; ++x)
-			cout << char(197) << char(196);
-		cout << char(180) << endl;		
+		//cout << "    " << char(195) << char(196);
+		//for (int x = 0; x < 14; ++x)
+		//	cout << char(197) << char(196);
+		//cout << char(180) << endl;		
 	}
 
 	// last row └─┴─┴─ ...
 
-	cout << "    " << char(192) << char(196);
-	for (int x = 0; x < 14; ++x)
-		cout << char(193) << char(196);
-	cout << char(217) << endl;
+	//cout << "    " << char(192) << char(196);
+	//for (int x = 0; x < 14; ++x)
+	//	cout << char(193) << char(196);
+	//cout << char(217) << endl;
 
-	SetConsoleTextAttribute(hConsole, 15); // default white colour
+	//SetConsoleTextAttribute(hConsole, 15); // default white colour
 }
