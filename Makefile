@@ -2,21 +2,18 @@ CXX := g++
 CXX_FLAGS := -std=c++17 -ggdb -fopenmp
 
 BIN := bin 
-SRC := $(wildcard ./Gomoku/*.cc)
+SRC := $(wildcard Gomoku/*.cpp)
 
-INCLUDE := -I.$(wildcard ./Gomoku/*.h)
+INCLUDE := -I./
 
-EXECUTABLE := main
+LIBRARIES :=
+EXECUTABLE := bin/main
 
-MAIN_SRC := $(SRC)
-
-all: $(BIN)/$(EXECUTABLE)
+all: compile 
 
 run: all
-	./$(BIN)/$(EXECUTABLE)
+	clear
+	./$(EXECUTABLE)
 
-$(BIN)/$(EXECUTABLE): $(MAIN_SRC)
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) $(MAIN_SRC) 
-
-$(BIN)/$(SHAREDLIB): $(SRC)
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) $(SRC)
+compile: $(SRC)
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) $(SRC) -o $(EXECUTABLE)

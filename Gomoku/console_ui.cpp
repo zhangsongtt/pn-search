@@ -62,7 +62,11 @@ void console_ui::clear_console(size_t number_of_chars) {
 // renders the board; when $last_move == INCORRECT_POSITION, don't highlight the last move
 
 void console_ui::render(const simple_board& board, coords last_move, bool show_winning_line) {
-	system("cls");
+#if defined(__GNUC__) && defined(__linux__)
+	system("clear");
+#elif defined(_MSC_VER)
+	system("cls")
+#endif
 
 	//SetConsoleTextAttribute(hConsole, 7); // light gray
 	cout << endl << "    a b c d e f g h i j k l m n o" << endl;
